@@ -1,0 +1,127 @@
+
+GCP Virtual Machines
+
+    - Launching a VM
+        - When launched - it's bare bones, nothing in it 
+
+    >> sudo apt-get install git
+
+    Then I can do 
+    >> $ git clone https:// ...
+
+    >> less script.sh 
+
+    wget = way to download data from http
+
+    Storage >> create a bucket
+
+    In VM
+    >> $gsutil ls gs://bucket_name
+        - shows contents of bucket
+
+    >> gsutil cp filename.* (any file type) gs://bucket_name
+
+
+GCP Elastic Storage
+    - Four storage classes:
+        - Multi regional
+        - Regional * most common
+        - Nearline
+        - Coldline
+    - to copy into bucket:
+        >> $ gsutil cp sales.csv gs://bucket-name/bucket-folders
+            * gsutil alredy available in VM instance /... * needs to be downloaded via the STK for local work
+
+
+GCP Architecture
+    - Resources belong to specific projects (projectId makes it unique)
+        - Zones and regions physically organize
+        - Projects logically organize
+        - Folders are another logical grouping (projects can be organized)
+        - ORganization is the root node of the whole Architecture
+
+GCP Networking
+    - Google has thousands of miles of optical fibers
+    - Data centers are protected by google private network 
+        ~ 40% of worlds data traffic each day
+    - 1 Petabit/sec of total bandwidth
+
+GCP security 
+    - Google handles integirty of physical network, physical security of hardware, encryption of data
+    - Stored data is automatically encrypted and distributed 
+        - Ex: BQ table data encrypted with keys, keys are encrypted with key-encrypted keys (enveloping keys)
+        - Limit data access via authorize views
+
+
+Choosing the right services
+
+- Compute engine: VMs on demand: Infrastructure As A Service
+    - For people who prefer to manage instances alone
+- Google Kubernetes Engine: GKE = clsuters of machines running containers
+    - Containers are code packaged up with dependincies
+    - runs containerized applications
+    GKE orchestrates the containers
+- AppEngine:PaAs = platform as a service
+    - Run code in the cloud without worrying about resource management, provisioning or infrastructure at all
+    - LARGE scale
+- Cloud functions: FaAS
+    - Serverless execurtion environment
+    - Runs code as a response to events
+    - Service is only paid for when code runs
+    - New file hitting cloud storage might trigger a cloud-function (think of beatport ingestion)
+    = Lift and shift
+    - Spark-ML jobs on cloud data proc - spings up compute instances for clusters
+- Databases:
+    - Database servers can be installed on VM
+    - Use GCP: BQ, Cloud spanner, cloud sql, Datastore
+- Fully managed Big Data and machine learning services
+
+GCP Products Hierarchy Overall
+
+1. Storage  
+    - Cloud storage
+    - Cloud SQL
+    - Cloud Spanner
+    - Cloud Datastore
+    - Cloud Bigtable
+
+2. Ingestion:
+    - Compute Engine
+    - Kubernetes Engine
+    - Cloud Dataflow
+    - Cloud Composer
+    - Cloud Datastore
+    - Cloud Pub/Sub
+    - Cloud Functions
+
+3. Analytics
+    - BQ
+    - Cloud Dataproc
+    - Datalab
+
+4. ML
+    - Cloud TPU
+    - Cloud ML
+    - Tensorflow
+    - Cloud AutoML
+    - ML-APIs
+
+5. Serving
+    - Data studio
+    - Dialogflow
+    - AppEngine
+
+
+BigQuery:
+
+** is the analytics engine - allows for analysis and model building
+Can serve as data warehouse; can also connect to tableau, looker, etc. 
+
+** slot-time-consumed: across all workers, x minutes of work was done in 'Elapsed time' via parallel processing
+
+How does BigQuery work?
+Serverless** = fully manged by GCP
+
+1. Fast querying
+2. Data warehousing 
+

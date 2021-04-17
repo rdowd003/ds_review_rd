@@ -1,0 +1,14 @@
+On GCP Console:
+
+Go to Dataproc
+    - initiate cluster
+    - change machine type as desired
+
+
+Go to 'JOBS'
+    - give jobID and assign cluster just created
+    - Change Spark from Hadoop
+
+
+Input and Output data should be stored on GCS
+    *** Only WORKING storage should remain on HDFS-disk ***
